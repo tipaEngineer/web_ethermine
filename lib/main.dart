@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     futureWalletDashboard = fetchEthermineData();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
