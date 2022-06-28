@@ -1,6 +1,6 @@
 class WalletDashboard {
   final String status;
-  final List<Data> data;
+   final Data data;
 
   const WalletDashboard({
     required this.status,
@@ -10,22 +10,27 @@ class WalletDashboard {
   factory WalletDashboard.fromJson(Map<String, dynamic> json) {
     return WalletDashboard(
       status: json['status'] as String,
-      data: json['data'] as List<Data>,
+      data: Data.fromJson(json['data']),
     );
   }
 }
 
 class Data {
-  final List<SharesData> statistic;
+  //final List<SharesData> statistics;
   final List<WorkersData> workers;
 
   const Data({
-    required this.statistic,
+    //required this.statistics,
     required this.workers,
 });
 
   factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(statistic: json['statistic'] as List<SharesData>, workers: json['workers'] as List<WorkersData>);
+    return Data(
+       // statistics: json['statistics'] as List<SharesData>,
+        workers: List<WorkersData>.from(json['workers'].map((v)=>WorkersData.fromJson(v)))
+
+        //json['workers'] as List<WorkersData>
+        );
   }
 }
 

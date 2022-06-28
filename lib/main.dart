@@ -53,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
     futureWalletDashboard = fetchEthermineData();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
          future: futureWalletDashboard,
          builder: (context, snapshot){
            if (snapshot.hasData){
-             return Text(snapshot.data!.status);
+             return Text(snapshot.data!.data.workers[0].currentHashrate.toString());
            } else if (snapshot.hasError) {
              return Text('${snapshot.error}');
            }
