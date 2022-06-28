@@ -2,6 +2,7 @@ class WalletDashboard {
   final String status;
    final Data data;
 
+
   const WalletDashboard({
     required this.status,
     required this.data,
