@@ -3,9 +3,12 @@ import 'package:web_ethermine/dashboard/average.dart';
 import 'package:web_ethermine/dashboard/current.dart';
 import 'package:web_ethermine/dashboard/reported.dart';
 import 'package:web_ethermine/dashboard/workers.dart';
+import 'package:web_ethermine/wallet_dashboard.dart';
 
 class DashBoard extends StatelessWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  final WorkersData worker;
+
+  const DashBoard({Key? key, required this.worker}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +17,12 @@ class DashBoard extends StatelessWidget {
       color: Colors.cyan,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Reported(),
-          Current(),
-          Average(),
-          Workers(),
+        children: [
+          Text(worker.reportedHashrate.toString()),
+          const Reported(),
+          const Current(),
+          const Average(),
+          const Workers(),
         ],
       ),
     );

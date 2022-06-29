@@ -35,50 +35,50 @@ class Data {
   }
 }
 
-class SharesData {
-  final int time;
-  final int lastSeen;
-  final int reportedHashrate;
-  final int currentHashrate;
-  final int validShares;
-  final int invalidShares;
-  final int staleShares;
-  final int activeWorkers;
-
-  const SharesData({
-    required this.time,
-    required this.lastSeen,
-    required this.reportedHashrate,
-    required this.currentHashrate,
-    required this.validShares,
-    required this.invalidShares,
-    required this.staleShares,
-    required this.activeWorkers,
-  });
-
-  factory SharesData.fromJson(Map<String, dynamic> json) {
-    return SharesData(
-      time: json['time'] as int,
-      lastSeen: json['lastSeen'] as int,
-      reportedHashrate: json['reportedHashrate'] as int,
-      currentHashrate: json['currentHashrate'] as int,
-      validShares: json['validShares'] as int,
-      invalidShares: json['invalidShares'] as int,
-      staleShares: json['staleShares'] as int,
-      activeWorkers: json['activeWorkers'] as int,
-    );
-  }
-}
+// class SharesData {
+//   final int time;
+//   final int lastSeen;
+//   final int reportedHashrate;
+//   final int currentHashrate;
+//   final int validShares;
+//   final int invalidShares;
+//   final int staleShares;
+//   final int activeWorkers;
+//
+//   const SharesData({
+//     required this.time,
+//     required this.lastSeen,
+//     required this.reportedHashrate,
+//     required this.currentHashrate,
+//     required this.validShares,
+//     required this.invalidShares,
+//     required this.staleShares,
+//     required this.activeWorkers,
+//   });
+//
+//   factory SharesData.fromJson(Map<String, dynamic> json) {
+//     return SharesData(
+//       time: json['time'] as int,
+//       lastSeen: json['lastSeen'] as int,
+//       reportedHashrate: json['reportedHashrate'] as int,
+//       currentHashrate: json['currentHashrate'] as int,
+//       validShares: json['validShares'] as int,
+//       invalidShares: json['invalidShares'] as int,
+//       staleShares: json['staleShares'] as int,
+//       activeWorkers: json['activeWorkers'] as int,
+//     );
+//   }
+// }
 
 class WorkersData {
   final String worker;
-  final int time;
-  final int lastSeen;
-  final int reportedHashrate;
-  final int currentHashrate;
-  final int validShares;
-  final int invalidShares;
-  final int staleShares;
+  final dynamic time;
+  final dynamic lastSeen;
+  final dynamic reportedHashrate;
+  final dynamic currentHashrate;
+  final dynamic validShares;
+  final dynamic invalidShares;
+  final dynamic staleShares;
 
   const WorkersData({
     required this.worker,
@@ -93,14 +93,14 @@ class WorkersData {
 
   factory WorkersData.fromJson(Map<String, dynamic> json) {
     return WorkersData(
-      worker: json['worker'] as String,
-      time: json['time'] as int,
-      lastSeen: json['lastSeen'] as int,
-      reportedHashrate: json['reportedHashrate'] as int,
-      currentHashrate: json['currentHashrate'] as int,
-      validShares: json['validShares'] as int,
-      invalidShares: json['invalidShares'] as int,
-      staleShares: json['staleShares'] as int,
+      worker: json['worker'],
+      time: json['time'],
+      lastSeen: json['lastSeen'],
+      reportedHashrate: json['reportedHashrate'],
+      currentHashrate: json['currentHashrate'],
+      validShares: json['validShares'],
+      invalidShares: json['invalidShares'],
+      staleShares: json['staleShares'],
     );
   }
 }

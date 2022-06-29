@@ -5,18 +5,15 @@ import 'package:web_ethermine/dashboard/dashboard.dart';
 import 'package:web_ethermine/wallet_dashboard.dart';
 import 'dart:async';
 
-
 Future<WalletDashboard> fetchEthermineData() async {
-  final response = await http
-      .get(Uri.parse('https://api.ethermine.org/miner/0x57cCf2aA47fccDE16fC4F11075Dc6a86E9e4217A/dashboard'));
+  final response = await http.get(Uri.parse(
+      'https://api.ethermine.org/miner/0x57cCf2aA47fccDE16fC4F11075Dc6a86E9e4217A/dashboard'));
   if (response.statusCode == 200) {
     return WalletDashboard.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load album');
   }
 }
-
-
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late Future<WalletDashboard> futureWalletDashboard;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     futureWalletDashboard = fetchEthermineData();
   }
@@ -57,24 +54,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-     body: Center(
-         child: FutureBuilder<WalletDashboard>(
-            future: futureWalletDashboard,
-            builder: (context, snapshot) {
-              if (snapshot.hasData){
-                print(snapshot.data!.data.workers[0]);
-                return Text(snapshot.data!.status);
-              } else if (snapshot.hasError) {
-                print(1111);
-                return Text('${snapshot.error}');
-              }
-              return const CircularProgressIndicator();
-            },
-    )
-   )
-  );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+            child: FutureBuilder<WalletDashboard>(
+          future: futureWalletDashboard,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  color: Colors.amber,
+                  child: Column(
+                    children: [DashBoard(worker: snapshot.data!.data.workers[0],)],
+                  ));
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        )));
   }
 }
