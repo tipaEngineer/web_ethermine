@@ -12,13 +12,16 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var hashrate = worker.reportedHashrate/1000000;
+    hashrate = hashrate.toStringAsFixed(2);
     return Container(
       margin: const EdgeInsets.fromLTRB(5, 15, 5, 15),
       color: Colors.cyan,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(worker.reportedHashrate.toString()),
+          Text(hashrate.toString()),
           const Reported(),
           const Current(),
           const Average(),
