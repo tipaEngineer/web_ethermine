@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:web_ethermine/dashboard/dashboard.dart';
 import 'package:web_ethermine/wallet_dashboard.dart';
 import 'dart:async';
 
@@ -60,19 +61,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
      body: Center(
-       child: FutureBuilder<WalletDashboard>(
-         future: futureWalletDashboard,
-         builder: (context, snapshot){
-           if (snapshot.hasData){
-             return Text(snapshot.data!.data.workers[0].currentHashrate.toString());
-           } else if (snapshot.hasError) {
-             return Text('${snapshot.error}');
-           }
-           return const CircularProgressIndicator();
-         },
-       ),
-     )
-     // This trailing comma makes auto-formatting nicer for build methods.
-    );
+         child: FutureBuilder<WalletDashboard>(
+            future: futureWalletDashboard,
+            builder: (context, snapshot) {
+              if (snapshot.hasData){
+                print(snapshot.data!.data.workers[0]);
+                return Text(snapshot.data!.status);
+              } else if (snapshot.hasError) {
+                print(1111);
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+    )
+   )
+  );
   }
 }
