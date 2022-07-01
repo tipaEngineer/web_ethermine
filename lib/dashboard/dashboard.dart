@@ -22,8 +22,7 @@ class DashBoard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(hashrate.toString()),
-          const Reported(),
+          Reported(hash: hashrate.toString()),
           const Current(),
           const Average(),
           const Workers(),
