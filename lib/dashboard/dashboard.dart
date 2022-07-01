@@ -6,26 +6,25 @@ import 'package:web_ethermine/dashboard/workers.dart';
 import 'package:web_ethermine/wallet_dashboard.dart';
 
 class DashBoard extends StatelessWidget {
-  final WorkersData worker;
+  final Data data;
 
-  const DashBoard({Key? key, required this.worker}) : super(key: key);
+  const DashBoard({Key? key, required this.data}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
 
-    var hashrate = worker.reportedHashrate/1000000;
-    hashrate = hashrate.toStringAsFixed(2);
+
     return Container(
       margin: const EdgeInsets.fromLTRB(5, 15, 5, 15),
       color: Colors.cyan,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Reported(hash: hashrate.toString()),
-          const Current(),
-          const Average(),
-          const Workers(),
+          Reported(reportedHashShares: data.currentStatistics),
+          Current(currentHashStale: data.currentStatistics),
+          Average(workersData: data.workers),
+          Workers(activeWorkers: data.currentStatistics.activeWorkers),
         ],
       ),
     );

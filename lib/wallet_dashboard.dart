@@ -18,7 +18,7 @@ class WalletDashboard {
 
 class Data {
   final List<SharesData> statistics;
-  final List<WorkersData> workers;
+  final List<WorkerData> workers;
   final CurrentStatistics currentStatistics;
   final Settings settings;
 
@@ -34,7 +34,7 @@ class Data {
         settings: Settings.fromJson(json['settings']),
         currentStatistics: CurrentStatistics.fromJson(json['currentStatistics']),
         statistics: List<SharesData>.from(json['statistics'].map((v)=>SharesData.fromJson(v))),
-        workers: List<WorkersData>.from(json['workers'].map((v)=>WorkersData.fromJson(v))),
+        workers: List<WorkerData>.from(json['workers'].map((v)=>WorkerData.fromJson(v))),
         );
   }
 }
@@ -74,17 +74,17 @@ class SharesData {
   }
 }
 
-class WorkersData {
+class WorkerData {
   final String worker;
   final dynamic time;
   final dynamic lastSeen;
   final dynamic reportedHashrate;
   final dynamic currentHashrate;
   final dynamic validShares;
-  final dynamic invalidShares;
-  final dynamic staleShares;
+  final num invalidShares;
+  final num staleShares;
 
-  const WorkersData({
+  const WorkerData({
     required this.worker,
     required this.time,
     required this.lastSeen,
@@ -95,8 +95,8 @@ class WorkersData {
     required this.staleShares,
   });
 
-  factory WorkersData.fromJson(Map<String, dynamic> json) {
-    return WorkersData(
+  factory WorkerData.fromJson(Map<String, dynamic> json) {
+    return WorkerData(
       worker: json['worker'],
       time: json['time'],
       lastSeen: json['lastSeen'],
@@ -110,15 +110,15 @@ class WorkersData {
 }
 
 class CurrentStatistics {
-  final int time;
-  final int lastSeen;
-  final int reportedHashrate;
-  final int currentHashrate;
-  final int validShares;
-  final int invalidShares;
-  final int staleShares;
-  final int activeWorkers;
-  final int unpaid;
+  final dynamic time;
+  final dynamic lastSeen;
+  final num reportedHashrate;
+  final num currentHashrate;
+  final dynamic validShares;
+  final dynamic invalidShares;
+  final dynamic staleShares;
+  final num activeWorkers;
+  final dynamic unpaid;
 
   const CurrentStatistics({
     required this.time,

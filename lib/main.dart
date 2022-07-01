@@ -11,7 +11,7 @@ Future<WalletDashboard> fetchEthermineData() async {
   if (response.statusCode == 200) {
     return WalletDashboard.fromJson(jsonDecode(response.body));
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load data');
   }
 }
 
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   color: Colors.amber,
                   child: Column(
-                    children: [DashBoard(worker: snapshot.data!.data.workers[0],)],
+                    children: [DashBoard(data: snapshot.data!.data,)],
                   ));
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');
