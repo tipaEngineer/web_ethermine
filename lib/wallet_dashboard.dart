@@ -20,15 +20,18 @@ class Data {
   final List<SharesData> statistics;
   final List<WorkersData> workers;
   final CurrentStatistics currentStatistics;
+  final Settings settings;
 
   const Data({
     required this.statistics,
     required this.workers,
     required this.currentStatistics,
+    required this.settings,
 });
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
+        settings: Settings.fromJson(json['settings']),
         currentStatistics: CurrentStatistics.fromJson(json['currentStatistics']),
         statistics: List<SharesData>.from(json['statistics'].map((v)=>SharesData.fromJson(v))),
         workers: List<WorkersData>.from(json['workers'].map((v)=>WorkersData.fromJson(v))),
