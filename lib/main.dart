@@ -7,7 +7,7 @@ import 'dart:async';
 
 Future<WalletDashboard> fetchEthermineData() async {
   final response = await http.get(Uri.parse(
-      'https://api.ethermine.org/miner/0x57cCf2aA47fccDE16fC4F11075Dc6a86E9e4217A/dashboard'));
+      'https://api.ethermine.org/miner/0x57cCf2aA47fccDE16fC4F11075Dc6a86E9e4217A/currentStats'));
   if (response.statusCode == 200) {
     return WalletDashboard.fromJson(jsonDecode(response.body));
   } else {
