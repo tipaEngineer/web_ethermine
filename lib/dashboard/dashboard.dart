@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:web_ethermine/current_stats.dart';
 import 'package:web_ethermine/dashboard/average.dart';
 import 'package:web_ethermine/dashboard/current.dart';
 import 'package:web_ethermine/dashboard/reported.dart';
 import 'package:web_ethermine/dashboard/workers.dart';
-import 'package:web_ethermine/wallet_dashboard.dart';
 
 class DashBoard extends StatelessWidget {
-  final Data data;
+  final CurrentStatsData data;
 
   const DashBoard({Key? key, required this.data}) : super(key: key);
 
@@ -21,10 +21,10 @@ class DashBoard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Reported(reportedHashShares: data.currentStatistics),
-          Current(currentHashStale: data.currentStatistics),
-          Average(workersData: data.workers),
-          Workers(activeWorkers: data.currentStatistics.activeWorkers),
+          Reported(dataReported: data),
+          Current(dataCurrent: data),
+          Average(dataAverage: data),
+          Workers(dataWorkers: data),
         ],
       ),
     );

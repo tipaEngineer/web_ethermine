@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:web_ethermine/current_stats.dart';
 import 'package:web_ethermine/dashboard/dashboard.dart';
-import 'package:web_ethermine/wallet_dashboard.dart';
 import 'dart:async';
 
-Future<WalletDashboard> fetchEthermineData() async {
+Future<CurrentStats> fetchEthermineData() async {
   final response = await http.get(Uri.parse(
       'https://api.ethermine.org/miner/0x57cCf2aA47fccDE16fC4F11075Dc6a86E9e4217A/currentStats'));
   if (response.statusCode == 200) {
-    return WalletDashboard.fromJson(jsonDecode(response.body));
+    return CurrentStats.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load data');
   }
@@ -44,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<WalletDashboard> futureWalletDashboard;
+  late Future<CurrentStats> futureWalletDashboard;
   @override
   void initState() {
     super.initState();
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-            child: FutureBuilder<WalletDashboard>(
+            child: FutureBuilder<CurrentStats>(
           future: futureWalletDashboard,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
